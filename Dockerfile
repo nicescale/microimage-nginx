@@ -4,7 +4,7 @@
 # Dockerizing Nginx: Dockerfile for building Nginx images
 #
 
-from       csphere/alpine:3.2
+from       microimages/alpine:3.2
 maintainer Carson,C.J.Zeong <zcy@nicescale.com>
 
 label service=nginx
