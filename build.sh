@@ -5,7 +5,7 @@ set -e
 export CON_NAME=nginx_t
 export REG_URL=d.nicescale.com:5000
 export IMAGE=nginx
-export TAGS="1.8 1.8.1"
+export TAGS="1.8 1.8.0"
 export BASE_IMAGE=microimages/alpine
 
 docker pull $REG_URL/$BASE_IMAGE

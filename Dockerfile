@@ -11,7 +11,8 @@ label service=nginx
 
 workdir /app
 
-run apk add --update nginx
+env NGINX_APK_VERSION 1.8.0-r1
+run apk add --update nginx=$NGINX_APK_VERSION
 
 add nginx.conf /etc/nginx/nginx.conf
 add default.conf /etc/nginx/conf.d/default.conf
