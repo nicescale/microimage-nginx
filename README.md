@@ -1,4 +1,6 @@
-# 如何使用该镜像
+![nginx](https://csphere.cn/assets/45169590-0653-4ec5-9a2e-57b4a49fea56)
+
+## 如何使用该镜像
 
 轻量级的HTTP服务 - Nginx,用来展示网页
 
