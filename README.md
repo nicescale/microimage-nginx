@@ -11,7 +11,7 @@ from microimages/ngxin
 add . /app/
 ```
 
-"."表示当前目录，add 操作会把当前目录的代码文件拷贝到网站根目录/app/
+"."表示当前目录，add 操作会把当前目录的静态文件拷贝到网站根目录/app/
 
 ### 构建运行
 
@@ -19,13 +19,15 @@ add . /app/
 $ docker build -t my-app .
 $ docker run -d -p 80:80 --name my-app my-app
 ```
-一般nginx和php结合较多
+
+一般nginx和php结合较多，如果结合php-fpm，php代码文件需要添加到php-fpm里。见下面的例子。
 
 ### nginx结合php-fpm
+
 ```console
-$ docker pull microimages/php-fpm
-$ docker run -d -p 80:80 --name my-php-fpm microimages/php-fpm
-$ docker run -d --name my-app --net=container:my-php-fpm microimages/nginx
+$ docker pull index.csphere.cn/microimages/php-fpm
+$ docker run -d -p 80:80 --name my-php-fpm index.csphere.cn/microimages/php-fpm
+$ docker run -d --name my-app --net=container:my-php-fpm index.csphere.cn/microimages/nginx
 ```
 
 ## 授权和法律
