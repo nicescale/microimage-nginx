@@ -7,7 +7,7 @@
 ### 把代码文件存放到当前目录下，并创建一个Dockerfile文件
 
 ```Dockerfile
-from microimages/ngxin
+from index.csphere.cn/microimages/nginx
 add . /app/
 ```
 
