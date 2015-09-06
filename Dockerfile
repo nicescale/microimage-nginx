@@ -16,7 +16,6 @@ run apk add --update nginx=$NGINX_APK_VERSION
 
 add nginx.conf /etc/nginx/nginx.conf
 add default.conf /etc/nginx/conf.d/default.conf
-add app/* /app/
 
 expose 80 443
 
