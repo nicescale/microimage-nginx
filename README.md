@@ -4,7 +4,13 @@
 
 轻量级的HTTP服务 - Nginx,用来展示网页
 
-### 把代码文件存放到当前目录下，并创建一个Dockerfile文件
+### 提供静态内容服务
+```console
+$ image=index.csphere.cn/microimages/nginx
+$ docker run --name some-nginx -v /some/content:/app:ro -d $image
+```
+
+### 把静态文件存放到当前目录下，并创建一个Dockerfile文件
 
 ```Dockerfile
 from index.csphere.cn/microimages/nginx
@@ -13,14 +19,28 @@ add . /app/
 
 "."表示当前目录，add 操作会把当前目录的静态文件拷贝到网站根目录/app/
 
-### 构建运行
-
+下面开始build并运行:
 ```console
-$ docker build -t my-app .
-$ docker run -d -p 80:80 --name my-app my-app
+$ docker build -t some-content-nginx .
+$ docker run --name some-nginx -d some-content-nginx
 ```
 
-一般nginx和php结合较多，如果结合php-fpm，php代码文件需要添加到php-fpm里。见下面的例子。
+### 导出端口
+```console
+$ docker run --name some-nginx -d -p 8080:80 some-content-nginx
+```
+
+这样就可以在浏览器里打开 `http://host-ip:8080`
+
+### 复杂的配置
+```console
+$ image=index.csphere.cn/microimages/nginx
+$ docker run --name some-nginx -v /some/nginx.conf:/etc/nginx/nginx.conf:ro -d $image
+```
+
+有关Nginx配置语法，请参考[Nginx文档](http://wiki.nginx.org/Configuration)。需要特别注意的是配置文件中应包含 `daemon off;` ，让Nginx进程呆在前台。
+
+另外自定义的配置文件也可以放到 `/etc/nginx/conf.d` 目录下。
 
 ### nginx结合php-fpm
 
@@ -29,6 +49,8 @@ $ docker pull index.csphere.cn/microimages/php-fpm
 $ docker run -d -p 80:80 --name my-php-fpm index.csphere.cn/microimages/php-fpm
 $ docker run -d --name my-app --net=container:my-php-fpm index.csphere.cn/microimages/nginx
 ```
+
+具体的使用，可以参考php-fpm镜像的[使用说明](https://csphere.cn/hub/php-fpm)
 
 ## 授权和法律
 
